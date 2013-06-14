@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 require 'goliath'
 require_relative 'markdown/md.rb'
 
@@ -26,12 +24,3 @@ class GfmService < Goliath::API
 end
 
 
-runner = ->(args) do
-  api = GfmService.new
-  r = Goliath::Runner.new(args, api)
-  r.app = Goliath::Rack::Builder.build(GfmService, api)
-  r.load_plugins GfmService.plugins
-  r.run
-end
-
-runner.call(ARGV)
